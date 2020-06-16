@@ -1,0 +1,18 @@
+{
+   "result":"1",
+   "list":[
+       {"nid":"1","name":"张三丰","age":"29","sex":"1","natives":"汉族"},
+       {"nid":"2","name":"张三丰","age":"29","sex":"1","natives":"汉族"},
+       {"nid":"3","name":"张三丰","age":"29","sex":"1","natives":"汉族"},
+       {"nid":"4","name":"张三丰","age":"29","sex":"1","natives":"汉族"},
+       {"nid":"5","name":"张三丰","age":"29","sex":"1","natives":"汉族"},
+       {"nid":"6","name":"张三丰","age":"29","sex":"1","natives":"汉族"},
+       {"nid":"7","name":"张三丰","age":"29","sex":"1","natives":"汉族"},
+       {"nid":"8","name":"张三丰","age":"29","sex":"1","natives":"汉族"},
+       {"nid":"9","name":"张三丰","age":"29","sex":"1","natives":"汉族"},
+       {"nid":"10","name":"张三丰","age":"29","sex":"1","natives":"汉族"},
+       {"nid":"11","name":"张三丰","age":"29","sex":"1","natives":"汉族"},
+       {"nid":"12","name":"张三丰","age":"29","sex":"1","natives":"汉族"},
+       {"nid":"13","name":"张三丰","age":"29","sex":"1","natives":"汉族"}
+   ] 
+}
