@@ -1,6 +1,5 @@
 <template>
     <div class="hjtable">
-        <h2>123456</h2>       
         <el-table
             :data="tableData"
             border
@@ -41,9 +40,9 @@ export default {
     data() {
         return {
             tableDatas: [
-                { id: '20160502', name: '王小虎1王小虎1王小虎1王小虎1王小虎1王小虎1', amount1: '518', amount2: 177, amount3: 137, price: 2.00, count: 5, total: 0}, 
-                { id: '20160504', name: '王小虎2', amount1: '117', amount2: 234, amount3: 209, price: 4.00, count: 5, total: 0}, 
-                { id: '20160501', name: '王小虎3', amount1: '319', amount2: 363, amount3: 116, price: 3.00, count: 4, total: 0}, 
+                { id: '20160502', name: '王小虎1王小虎1王小虎1王小虎1王小虎1王小虎1', amount1: '518', amount2: 177, amount3: 137, price: 2.00, count: 5, total: 0},
+                { id: '20160504', name: '王小虎2', amount1: '117', amount2: 234, amount3: 209, price: 4.00, count: 5, total: 0},
+                { id: '20160501', name: '王小虎3', amount1: '319', amount2: 363, amount3: 116, price: 3.00, count: 4, total: 0},
                 { id: '20160503', name: '王小虎4', amount1: '151', amount2: 265, amount3: 153, price: 4.00, count: 6, total: 0}
             ],
             tableData: [],

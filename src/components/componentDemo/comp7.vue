@@ -8,7 +8,7 @@
                 <el-select v-model="readSlt">
                     <el-option value="1" label="AAA"></el-option>
                     <el-option value="2" label="BBB"></el-option>
-                </el-select> 
+                </el-select>
             </div>
         </div>
         <el-button @click="selectChoose()">select选择</el-button>
@@ -43,12 +43,10 @@
 <script>
   import mockjs from "@/components/others/mockjs.vue";
   import scrollbar from "@/components/others/scrollbar.vue";
-  import droarg from "@/components/others/droarg.vue";
     export default {
         components: {
           mockjs,
           scrollbar,
-          droarg
         },
         data () {
             var checkAge = (rule, value, callback) => {
@@ -170,4 +168,3 @@
 }
 
 </style>
- 
