@@ -37,7 +37,7 @@
             <el-table-column prop="amount3" sortable label="数值 3"> </el-table-column>
         </el-table>
         <h6>------------------------------------------------------------------------------------------------------------</h6>
-        <el-table :data="tableData4" style="width: 100%">
+        <el-table :data="tableData4" style="width: 100%" :header-cell-style="setHeadStyle">
             <el-table-column prop="date" label="日期"></el-table-column>
             <el-table-column label="配送信息">
                 <el-table-column prop="name" label="姓名"></el-table-column>
@@ -47,6 +47,7 @@
                     <el-table-column prop="address" label="地址"></el-table-column>
                     <el-table-column prop="zip" label="邮编"></el-table-column>
                 </el-table-column>
+                <el-table-column prop="name" label="姓名"></el-table-column>
             </el-table-column>
         </el-table>
     </div>
@@ -195,6 +196,9 @@ export default {
                 }
             }
         },
+		setHeadStyle(a, b, c, d) {
+
+        }
     },
 }
 </script>
