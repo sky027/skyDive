@@ -28,8 +28,27 @@
                 </template>
             </el-table-column>
         </el-table>
-        <br>
+        <br><hr><br>
         <el-button @click="getTables()">OKOK</el-button>
+        <el-table
+            :data="tableDatas3"
+            border
+            ref="defineTable3"
+            style="width: 100%">
+            <el-table-column prop="id" label="ID" width="180" :show-overflow-tooltip="true"> </el-table-column>
+            <el-table-column prop="name" label="姓名" width="100" :show-overflow-tooltip="true"> </el-table-column>
+            <el-table-column prop="amount1" sortable label="数值 1（元）"></el-table-column>
+            <el-table-column prop="amount2" sortable label="数值 2（元）"></el-table-column>
+            <el-table-column prop="amount3" sortable label="数值 3（元）"></el-table-column>
+            <el-table-column prop="price" sortable label="单价"></el-table-column>
+            <el-table-column prop="value" sortable label="数量">
+                <template slot-scope="scope">
+                    <el-input v-if="scope.row.prop != 'total'" type="number" v-model.number="scope.row.value" @keyup.native="setTotals(scope.row)"></el-input>
+                    <span v-if="scope.row.prop == 'total'">{{scope.row.value}}</span>
+                </template>
+            </el-table-column>
+        </el-table>
+        <div style="height: 100px;"></div>
     </div>
 </template>
 
@@ -46,8 +65,26 @@ export default {
                 { id: '20160503', name: '王小虎4', amount1: '151', amount2: 265, amount3: 153, price: 4.00, count: 6, total: 0}
             ],
             tableData: [],
-            currentRow: null
+            currentRow: null,
+            tableDatas3: [
+                { id: '20160502', name: '王小虎1', amount1: '518', amount2: 177, amount3: 137, price: 2.00, value: 5, prop: 'prama_a'},
+                { id: '20160504', name: '王小虎2', amount1: '117', amount2: 234, amount3: 209, price: 4.00, value: 5, prop: 'prama_b'},
+                { id: '20160501', name: '王小虎3', amount1: '319', amount2: 363, amount3: 116, price: 3.00, value: 4, prop: 'prama_c'},
+                { id: '20160503', name: '王小虎4', amount1: '151', amount2: 265, amount3: 153, price: 4.00, value: 6, prop: 'prama_d'}
+            ],
         }
+    },
+    beforeMount() {
+        this.tableDatas3.push({ 
+            id: '-',
+            name: '/', 
+            amount1: '/', 
+            amount2: '/', 
+            amount3: '/', 
+            price: '/', 
+            value: this.cucal(), 
+            prop: 'total'
+        });
     },
     mounted() {
         var self = this;
@@ -94,9 +131,54 @@ export default {
             return total;
         },
         getTables(){
-            debugger;
-            var obj = this.$refs.defineTable;
-            var s = 9;
+            var obj = this.$refs.defineTable3.data;
+            let param = {};
+            obj.forEach(item => {
+                param[item.prop] = item.value;
+            });
+            console.log(param);
+        },
+        cucal(){
+            let sum = 0;
+            this.tableDatas3.forEach(item => {
+                if(item.prop != 'total'){
+                    sum += item.value;
+                }
+            });
+            return sum;
+        },
+        setTotals(){
+            let dataList = this.$refs.defineTable3.data;
+            let sum = 0;
+            var obj = this.tableDatas3.find(item => {
+                return item.prop == 'total';
+            });
+            if(!obj){
+                let sum = 0;
+                this.tableDatas3.forEach(item => {
+                    if(item.prop != 'total'){
+                        sum += item.value;
+                    }
+                });
+                this.tableDatas3.push({ 
+                    id: '-',
+                    name: '/', 
+                    amount1: '/', 
+                    amount2: '/', 
+                    amount3: '/', 
+                    price: '/', 
+                    value: sum, 
+                    prop: 'total'
+                });
+            } else {
+                this.tableDatas3.forEach(item => {
+                    if(item.prop != 'total'){
+                        sum += item.value;
+                    } else {
+                        item.value = sum;
+                    }
+                });
+            }
         }
     },
 }
