@@ -19,6 +19,7 @@
     import comp8 from '@/components/componentDemo/comp8';
     import comp9 from '@/components/componentDemo/comp9';
     import comp10 from '@/components/componentDemo/comp10';
+    import comp11 from '@/components/componentDemo/comp11';
 
     export default {
         components: {
@@ -32,6 +33,7 @@
             "comp8": comp8,
             "comp9": comp9,
             "comp10": comp10,
+            "comp11": comp11,
         },
         data () {
             return {
@@ -48,6 +50,7 @@
                     {label: "联动", key: "eight", html: "<comp8></comp8>", compName: "comp8"},
                     {label: "合计表格1", key: "nine", html: "<comp9></comp9>", compName: "comp9"},
                     {label: "合计表格2", key: "ten", html: "<comp10></comp10>", compName: "comp10"},
+                    {label: "合并表格", key: "ten1", html: "<comp11></comp11>", compName: "comp11"},
                 ],
                 tabindex: 8
             }
