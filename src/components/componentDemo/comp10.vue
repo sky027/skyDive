@@ -28,8 +28,27 @@
                 </template>
             </el-table-column>
         </el-table>
-        <br>
-        <el-button @click="getTables()">OKOK</el-button>
+
+        <br><hr/><br>
+
+        <el-button @click="getTables()">获取输入值</el-button>
+        <el-table
+                :data="tableData2"
+                border
+                ref="defineTable2"
+                style="width: 100%">
+            <el-table-column prop="id" label="ID" width="180" :show-overflow-tooltip="true"> </el-table-column>
+            <el-table-column prop="name" label="姓名" width="100" :show-overflow-tooltip="true"> </el-table-column>
+            <el-table-column prop="amount1" sortable label="数值 1（元）"></el-table-column>
+            <el-table-column prop="amount2" sortable label="数值 2（元）"></el-table-column>
+            <el-table-column prop="amount3" sortable label="数值 3（元）"></el-table-column>
+            <el-table-column prop="price" sortable label="单价"></el-table-column>
+            <el-table-column prop="value" sortable label="数量">
+                <template slot-scope="scope">
+                    <el-input type="text" v-model="scope.row.value"></el-input>
+                </template>
+            </el-table-column>
+        </el-table>
     </div>
 </template>
 
@@ -45,6 +64,12 @@ export default {
                 { id: '20160501', name: '王小虎3', amount1: '319', amount2: 363, amount3: 116, price: 3.00, count: 4, total: 0},
                 { id: '20160503', name: '王小虎4', amount1: '151', amount2: 265, amount3: 153, price: 4.00, count: 6, total: 0}
             ],
+			tableData2: [
+				{ id: '20160502', name: '王小虎1', amount1: '518', amount2: 177, amount3: 137, price: 2.00, value: 5, props: 'param_a'},
+				{ id: '20160504', name: '王小虎2', amount1: '117', amount2: 234, amount3: 209, price: 4.00, value: 5, props: 'param_b'},
+				{ id: '20160501', name: '王小虎3', amount1: '319', amount2: 363, amount3: 116, price: 3.00, value: 4, props: 'param_c'},
+				{ id: '20160503', name: '王小虎4', amount1: '151', amount2: 265, amount3: 153, price: 4.00, value: 6, props: 'param_d'}
+			],
             tableData: [],
             currentRow: null
         }
@@ -94,9 +119,12 @@ export default {
             return total;
         },
         getTables(){
-            debugger;
-            var obj = this.$refs.defineTable;
-            var s = 9;
+        	let param = {};
+            let data = this.$refs.defineTable2.data;
+            data.forEach(item => {
+				param[item.props] = item.value;
+            });
+            console.log(param);
         }
     },
 }
