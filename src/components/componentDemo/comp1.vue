@@ -57,14 +57,12 @@
 
 <script>
     export default {
-        components: {
-
-        },
         data () {
             return {
                 currentPage:1, 
                 pagesize:10,
-                tableData: [{
+                tableData: [
+                	{
                     date: '2016-05-03',
                     name: '王小虎',
                     province: '上海',
@@ -160,7 +158,7 @@
             toggleSelection(rows) {
                 if (rows) {
                     rows.forEach(row => {
-                        this.$refs.multipleTable.toggleRowSelection(row);
+                        this.$refs.multipleTable.toggleRowSelection(row, true);
                     });
                 } else {
                     this.$refs.multipleTable.clearSelection();

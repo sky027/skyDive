@@ -114,8 +114,7 @@
                             <el-form-item label="编号：" :label-width="formLabelWidth" prop="id">
                                 <el-input :disabled="forEdit" v-model="form.id" auto-complete="off"></el-input>
                             </el-form-item>
-                        ol>
-                        </el-c
+                        </el-col>
                         <el-col :span="12">
                             <el-form-item label="姓名：" :label-width="formLabelWidth" prop="name">
                                 <el-input :disabled="checkInfo" v-model="form.name" auto-complete="off"></el-input>
@@ -129,7 +128,6 @@
                             <el-radio :disabled="checkInfo" v-model="sexradio" label="1">男</el-radio>
                             <el-radio :disabled="checkInfo" v-model="sexradio" label="2">女</el-radio>
                           </el-form-item>
-                        </el-col>
                         </el-col>
                         <el-col :span="12">
                             <el-form-item label="出生日期：" :label-width="formLabelWidth" prop="birth">
