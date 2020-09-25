@@ -1,0 +1,37 @@
+.el-tabs__content{
+  height: calc(100% - 70px);
+}
+.el-tab-pane{
+  height: 100%;
+}
+.el-scrollbar{
+  height: 100%;
+}
+.chart-home .el-scrollbar__wrap{
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.charts-box{
+  width: 450px;
+  height: 400px;
+  float: left;
+  margin-left: 10px;
+  margin-bottom: 15px;
+  position: relative;
+  .chart-title{
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+  }
+}
+
+.clearFixed:after {
+  visibility: hidden;
+  display: block;
+  clear: both;
+  height: 0;
+  font-size: 0;
+  content: ".";
+}

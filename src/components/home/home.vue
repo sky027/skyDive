@@ -1,7 +1,7 @@
 <template>
     <div class="home" ref="home">
         <el-tabs v-model="activeName" class="testtab" type="border-card" @tab-click="handleClick">
-            <el-tab-pane :label="item.label" :name="item.key" v-for="(item, index) of menulist" :key="index">
+            <el-tab-pane :label="item.label" :name="item.key" v-for="(item, index) of menuList" :key="index">
                 <component :is="item.compName" v-if="index == tabindex"></component>
             </el-tab-pane>
         </el-tabs>
@@ -20,6 +20,7 @@
     import comp9 from '@/components/componentDemo/comp9';
     import comp10 from '@/components/componentDemo/comp10';
     import comp11 from '@/components/componentDemo/comp11';
+    import comp12 from '@/components/chart-demo/chart-home';
 
     export default {
         components: {
@@ -34,12 +35,13 @@
             "comp9": comp9,
             "comp10": comp10,
             "comp11": comp11,
+            "comp12": comp12
         },
         data () {
             return {
                 activeName: 'eight',
                 showPage: false,
-                menulist: [
+                menuList: [
                     {label: "网格", key: "first", html: "<comp1></comp1>", compName: "comp1"},
                     {label: "Echarts", key: "second", html: "<comp2></comp2>", compName: "comp2"},
                     {label: "角色管理", key: "third", html: "<comp3></comp3>", compName: "comp3"},
@@ -51,6 +53,7 @@
                     {label: "合计表格1", key: "nine", html: "<comp9></comp9>", compName: "comp9"},
                     {label: "合计表格2", key: "ten", html: "<comp10></comp10>", compName: "comp10"},
                     {label: "合并表格", key: "ten1", html: "<comp11></comp11>", compName: "comp11"},
+                    {label: "V-Chart", key: "ten12", html: "<comp12></comp12>", compName: "comp12"},
                 ],
                 tabindex: 8
             }
