@@ -57,9 +57,6 @@
 
 <script>
     export default {
-        components: {
-
-        },
         data () {
             return {
                 currentPage:1,
@@ -161,7 +158,7 @@
             toggleSelection(rows) {
                 if (rows) {
                     rows.forEach(row => {
-                        this.$refs.multipleTable.toggleRowSelection(row);
+                        this.$refs.multipleTable.toggleRowSelection(row, true);
                     });
                 } else {
                     this.$refs.multipleTable.clearSelection();

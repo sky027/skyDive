@@ -17,21 +17,43 @@
                 <el-table-column v-if="item.childHead && item.childHead.length>0"
                                  v-for="(child, k) of item.childHead" :key="k" :prop="child.prop" :label="child.label"></el-table-column>
             </el-table-column>
-
-            <!--<el-table-column prop="date" label="日期"></el-table-column>
-            <el-table-column prop="name" label="姓名"></el-table-column>
-            <el-table-column prop="" label="地址">
-                <el-table-column prop="province" label="省份"></el-table-column>
-                <el-table-column prop="city" label="市区"></el-table-column>
-                <el-table-column prop="address" label="地址"></el-table-column>
-                <el-table-column prop="zip" label="邮编"></el-table-column>
-            </el-table-column>
-            <el-table-column prop="others" label="其他"></el-table-column>-->
         </el-table>
+        <h6>- - - - -  - - - - - - - - - - -  - - - - - - - - - - - - - - - - -  - - - - - - - - - - -  - - - - - - - - - - - - - - - - -  - - - - - - - - - - -  - - - - - - - - - - - - - - - - -  - - - - - - - - - - -  - - - - - - - - - - - - </h6>
+        <div class="grid-content2">
+            <el-table :data="gridList" ref="multipleTable" border  @selection-change="handleseSelectionChange">
+                <el-table-column type="selection" width="50"></el-table-column>
+                <el-table-column type="index" :index="getIndexNum(index)" width="60"></el-table-column>
+                <el-table-column prop="id" label="编号"> </el-table-column>
+                <el-table-column prop="name" label="姓名">
+                    <template slot-scope="scope">
+                        <a href="javascript:void(0);" @click="updateRow(scope.$index, scope.row, 1)">{{scope.row.name}}</a>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="sex" label="性别">
+                    <template slot-scope="scope">
+                        <span>{{(scope.row.sex==1)?"男":"女"}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="birth" label="出生日期" :show-overflow-tooltip="true"> </el-table-column>
+                <el-table-column prop="age" label="年龄" :show-overflow-tooltip="true"> </el-table-column>
+                <el-table-column prop="nations" label="民族" :show-overflow-tooltip="true"> </el-table-column>
+                <el-table-column prop="previce" label="所在省份" :show-overflow-tooltip="true"> </el-table-column>
+                <el-table-column prop="phone" label="联系电话"> </el-table-column>
+            </el-table>
+            <el-pagination class="pagecla" @size-change="handleSizeChange"
+                           @current-change="handleCurrentChange"
+                           layout="total, sizes, prev, pager, next, jumper, slot"
+                           :current-page="currentPage"
+                           :page-sizes="[10, 20, 30, 40]"
+                           :page-size="pagesize"
+                           :total="totals">
+            </el-pagination>
+        </div>
     </div>
 </template>
 
 <script>
+	import { getArrData, getPrevice, getNations } from '../../../static/js/getJsonData.js'
     export default {
         name: "comp11",
         data() {
@@ -61,10 +83,20 @@
                 ],
                 thead: [],
                 changeTable: false,
+                gridList: [],  //表格数据
+                currentPage: 1,
+                pagesize: 10,
+                loading: true,   //加载
+				  index: 1,
+				  indexCode: 0,//记录所选行的索引
+				  multipleSeletion: [],  //保存所选择行的数据
+                totals: 0,
             }
         },
         mounted() {
             this.getActiveData();
+            this.queryData();
+            this.getGridData();
         },
         methods: {
             setHeadStyle(a, b, c, d) {
@@ -95,7 +127,54 @@
                 }
                 this.thead = list;
                 this.changeTable = true;
-            }
+            },
+            handleChange(value) {
+                console.log(value);
+            },
+            queryData(){
+                // this.gridList = getArrData(50);
+            },
+			getGridData(){
+				var url = "../../../static/json/table-list-data.json";
+				this.$ajax.get(url).then(res=>{
+					let list = res.data.data;
+					this.totals = res.data.total;
+					this.gridList = list.slice((this.currentPage - 1) * this.pagesize, this.currentPage * this.pagesize);
+					setTimeout(() => {
+						let arr = ['2VF380K3GSXJ', '4LHHN2U4ZRBH', 'XT33P7LA83XA', 'RUW180VJ86XI', '14Q48670WO4F', 'UYJW9K2IG59U', 'M59XU5871805', 'O4FPPH1Z12C1'];
+						this.toggleSelection(arr);
+                    }, 300);
+				}).catch( function (res){
+                   console.log(res);
+				});
+			},
+			toggleSelection(rows) {
+            	let that = this;
+				for (let i = 0; i < this.gridList.length; i++) {
+					let res = this.gridList[i];
+					if (rows.indexOf(res.id) > -1) {
+						this.multipleSeletion.push(res);
+						this.$refs.multipleTable.toggleRowSelection(res, true);
+					}
+				}
+			},
+            handleSizeChange(val) {
+                this.pagesize = val;
+                this.getGridData();
+                console.log(`每页 ${val} 条`);
+            },
+            handleCurrentChange(val) {
+                this.currentPage = val;
+                this.getGridData();
+                console.log(`当前页: ${val}`);
+            },
+            handleseSelectionChange(val){
+                this.multipleSeletion = val;
+            },
+			getIndexNum(index){
+				var num = index + (this.currentPage - 1)*(this.pagesize);
+				return num;
+			},
         }
     }
 </script>
