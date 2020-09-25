@@ -23,20 +23,20 @@
                             <el-button type="text" size="small">编辑</el-button>
                         </template>
                     </el-table-column>
-                    <el-pagination background 
-                        @size-change="handleSizeChange" 
-                        @current-change="handleCurrentChange" 
-                        :current-page="currentPage" 
-                        :page-sizes="[5, 10, 20, 40]" 
-                        :page-size="pagesize"     
-                        layout="prev, pager, next" 
-                        :total="tableData.length"> 
+                    <el-pagination background
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :current-page="currentPage"
+                        :page-sizes="[5, 10, 20, 40]"
+                        :page-size="pagesize"
+                        layout="prev, pager, next"
+                        :total="tableData.length">
                     </el-pagination>
                 </el-table>
             </el-col>
             <el-col :span="12">
                 <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" style="width: 100%"
-                    @selection-change="handleSelectionChange"> 
+                    @selection-change="handleSelectionChange">
                     <el-table-column type="index" width="50"> </el-table-column>
                     <el-table-column type="selection" width="55"> </el-table-column>
                     <el-table-column label="日期" width="120">
@@ -62,9 +62,10 @@
         },
         data () {
             return {
-                currentPage:1, 
+                currentPage:1,
                 pagesize:10,
-                tableData: [{
+                tableData: [
+                  {
                     date: '2016-05-03',
                     name: '王小虎',
                     province: '上海',
@@ -171,7 +172,7 @@
             },
             handleSizeChange(){
                 this.pagesize = size;
-                console.log(this.pagesize) 
+                console.log(this.pagesize)
             },
             handleCurrentChange(){
                 this.currentPage = currentPage;

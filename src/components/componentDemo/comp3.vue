@@ -51,9 +51,9 @@
         <el-row :gutter="20">
             <el-col :span="20">
                 <div class="grid-content2">
+                  <!--:row-style="tablebgc" :cell-style="cellsty" :header-cell-style="headsty"-->
                     <el-table :data="gridList.slice((currentPage - 1) * pagesize, currentPage * pagesize)"
-                    class="gridcla" border :row-style="tablebgc" :cell-style="cellsty"
-                     :header-cell-style="headsty" @selection-change="handleseSelectionChange">
+                    class="gridcla" border @selection-change="handleseSelectionChange">
                         <el-table-column type="selection" width="50"> </el-table-column>
                         <el-table-column type="index" :index="getIndex(index)" width="40"> </el-table-column>
                         <el-table-column prop="id" label="编号" v-if="fsnumshow" width="145"> </el-table-column>
@@ -114,8 +114,7 @@
                             <el-form-item label="编号：" :label-width="formLabelWidth" prop="id">
                                 <el-input :disabled="forEdit" v-model="form.id" auto-complete="off"></el-input>
                             </el-form-item>
-                        ol>
-                        </el-c
+                        </el-col>
                         <el-col :span="12">
                             <el-form-item label="姓名：" :label-width="formLabelWidth" prop="name">
                                 <el-input :disabled="checkInfo" v-model="form.name" auto-complete="off"></el-input>
@@ -129,7 +128,6 @@
                             <el-radio :disabled="checkInfo" v-model="sexradio" label="1">男</el-radio>
                             <el-radio :disabled="checkInfo" v-model="sexradio" label="2">女</el-radio>
                           </el-form-item>
-                        </el-col>
                         </el-col>
                         <el-col :span="12">
                             <el-form-item label="出生日期：" :label-width="formLabelWidth" prop="birth">
@@ -180,9 +178,7 @@
 <script>
     import { getArrData, getPrevice, getNations } from '../../../static/js/getJsonData.js'
     export default {
-        components: {
-
-        },
+        components: {},
         data: function () {
             var checkid = (rule, value, callback) => {
                 let reg = /^(?![0-9]+$)(?![A-Z]+$)[0-9A-Z]{8,12}$/;
@@ -468,7 +464,7 @@
                     var dom = document.getElementsByClassName("gridcla")[0];
                     var h1 = dom.querySelector(".el-table__body-wrapper").offsetHeight;
                     var h2 = dom.querySelector(".el-table__header-wrapper").offsetHeight;
-                    document.getElementsByClassName("gridcla")[0].querySelector(".el-table__fixed-right").style.height = (h1 + h2) +'px';
+                    // document.getElementsByClassName("gridcla")[0].querySelector(".el-table__fixed-right").style.height = (h1 + h2) +'px';
                 }, 2000);
 
             });
@@ -663,7 +659,7 @@
     }
     .gridcla{
         width: 100%;
-        height: 90%;
+        height: 100%;
         overflow-y: auto;
     }
     .pagecla{
@@ -674,9 +670,6 @@
     .spanrow{
         margin-top: 8px;
         margin-left: 10px;
-    }
-    .el-table__fixed-right{
-        height: auto !important;
     }
     .showInfo .el-select{
         width: 100%;
