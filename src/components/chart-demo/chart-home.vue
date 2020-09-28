@@ -18,24 +18,26 @@
   import pieChart from '@/components/chart-demo/pie-chart';
   import otherChart from '@/components/chart-demo/others-chart';
   import otherChart2 from '@/components/chart-demo/others-chart2';
+  import eventChart from '@/components/chart-demo/event-chart';
   export default {
     name: "chart-home",
     components: {
-      lineChart,barChart,pieChart,otherChart,otherChart2
+      lineChart,barChart,pieChart,otherChart,otherChart2,eventChart
     },
     data() {
       return {
         chartList: [
           {name: '折线图', isShow: false, component: 'lineChart'},
           {name: '柱状图', isShow: false, component: 'barChart'},
-          {name: '饼 图', isShow: false, component: 'pieChart'},
+          {name: '饼 图/ 环形图', isShow: false, component: 'pieChart'},
           {name: '其他图形', isShow: false, component: 'otherChart'},
           {name: '其他图形 2', isShow: false, component: 'otherChart2'},
+          {name: '图形事件绑定', isShow: false, component: 'eventChart'},
         ]
       }
     },
     mounted() {
-      this.chartList[4].isShow = true;
+      this.chartList[0].isShow = true;
     },
     methods: {
       showChart(item) {
