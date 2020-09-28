@@ -1,5 +1,5 @@
 <template>
-    <div>
+  <el-scrollbar>
         <div>
             <el-select v-model="selectValue">
                 <el-option value="2" label="合并 2 列"></el-option>
@@ -49,7 +49,7 @@
                            :total="totals">
             </el-pagination>
         </div>
-    </div>
+  </el-scrollbar>
 </template>
 
 <script>

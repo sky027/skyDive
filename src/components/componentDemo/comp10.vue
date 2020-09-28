@@ -1,4 +1,5 @@
 <template>
+  <el-scrollbar>
     <div class="hjtable">
         <el-table
             :data="tableData"
@@ -50,6 +51,7 @@
             </el-table-column>
         </el-table>
     </div>
+  </el-scrollbar>
 </template>
 
 <script>
