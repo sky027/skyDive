@@ -1,4 +1,5 @@
 <template>
+  <el-scrollbar>
     <div class="comp5">
         <h2>第五个页签，测试弹窗</h2>
         <button class="btns" @click="frodailog">OKOKO</button>
@@ -9,6 +10,7 @@
         >
         </com-dailog>
     </div>
+  </el-scrollbar>
 </template>
 
 <script>

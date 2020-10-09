@@ -1,4 +1,5 @@
 <template>
+  <el-scrollbar>
     <div class="comp5">
         <h2>第7个页签，测试其他</h2>
         <component :is="compName"></component>
@@ -38,6 +39,7 @@
             </el-select>
         </div>
     </div>
+  </el-scrollbar>
 </template>
 
 <script>

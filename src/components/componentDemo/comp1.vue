@@ -1,4 +1,5 @@
 <template>
+  <el-scrollbar>
     <div class="comp1">
         <div>
             <el-row :gutter="20">
@@ -53,6 +54,7 @@
             </el-col>
         </el-row>
     </div>
+  </el-scrollbar>
 </template>
 
 <script>

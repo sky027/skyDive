@@ -1,4 +1,5 @@
 <template>
+  <el-scrollbar>
     <div class="comp14">
        <h2> 这是第4444个组件</h2>
         <div class="dv1" id="demo">
@@ -12,6 +13,7 @@
           </vue-scroll>
         </div>
     </div>
+  </el-scrollbar>
 </template>
 
 <script>

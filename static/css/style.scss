@@ -7,6 +7,15 @@
 .el-scrollbar{
   height: 100%;
 }
+.el-scrollbar__wrap{
+  overflow-x: hidden;
+}
+.el-select-dropdown__wrap.el-scrollbar__wrap{
+  overflow-x: scroll;
+}
+.el-cascader-menu__wrap.el-scrollbar__wrap{
+  overflow-x: scroll;
+}
 .chart-home .el-scrollbar__wrap{
   overflow-y: auto;
   overflow-x: hidden;
