@@ -55,7 +55,7 @@
                     {label: "合并表格", key: "ten1", html: "<comp11></comp11>", compName: "comp11"},
                     {label: "V-Chart", key: "ten12", html: "<comp12></comp12>", compName: "comp12"},
                 ],
-                tabindex: 8
+                tabindex: 1
             }
         },
         mounted() {
