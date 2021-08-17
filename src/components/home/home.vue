@@ -41,7 +41,7 @@
         },
         data () {
             return {
-                activeName: 'eight',
+                activeName: 'nine',
                 showPage: false,
                 menuList: [
                     {label: "网格", key: "first", html: "<comp1></comp1>", compName: "comp1"},
