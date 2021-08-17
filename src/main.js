@@ -14,6 +14,11 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI);
 
+// Swiper
+import Swiper from 'swiper'
+import 'swiper/dist/css/swiper.css'
+Vue.prototype.$swiper = Swiper;
+
 // 折叠展开动画
 import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
 Vue.component(CollapseTransition.name, CollapseTransition)
@@ -24,10 +29,6 @@ Vue.use(vuescroll, {
   ops: {},  // 在这里设置全局默认配置
   name: 'vue-scroll' // 在这里自定义组件名字，默认是vueScroll
 });
-
-/*import { HappyScroll } from 'vue-happy-scroll'
-Vue.component('happy-scroll', HappyScroll);
-import 'vue-happy-scroll/docs/happy-scroll.css'*/
 
 import PerfectScrollbar from 'perfect-scrollbar';
 Vue.prototype.PS = PerfectScrollbar;

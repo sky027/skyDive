@@ -21,6 +21,7 @@
     import comp10 from '@/components/componentDemo/comp10';
     import comp11 from '@/components/componentDemo/comp11';
     import comp12 from '@/components/chart-demo/chart-home';
+    import swiper from '@/components/componentDemo/swiper';
 
     export default {
         components: {
@@ -35,7 +36,8 @@
             "comp9": comp9,
             "comp10": comp10,
             "comp11": comp11,
-            "comp12": comp12
+            "comp12": comp12,
+          swiper: swiper
         },
         data () {
             return {
@@ -54,6 +56,7 @@
                     {label: "合计表格2", key: "ten", html: "<comp10></comp10>", compName: "comp10"},
                     {label: "合并表格", key: "ten1", html: "<comp11></comp11>", compName: "comp11"},
                     {label: "V-Chart", key: "ten12", html: "<comp12></comp12>", compName: "comp12"},
+                    {label: "轮 播", key: "swiper", html: "<swiper></swiper>", compName: "swiper"},
                 ],
                 tabindex: 1
             }
