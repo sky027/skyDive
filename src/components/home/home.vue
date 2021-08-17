@@ -41,7 +41,7 @@
         },
         data () {
             return {
-                activeName: 'nine',
+                activeName: 'eight',
                 showPage: false,
                 menuList: [
                     {label: "网格", key: "first", html: "<comp1></comp1>", compName: "comp1"},
@@ -61,13 +61,17 @@
                 tabindex: 1
             }
         },
-        mounted() {
+      created() {
+        window.document.title = '联动';
+      },
+      mounted() {
           this.$refs.home.style.width = (window.innerWidth - 16) +"px";
           this.$refs.home.style.height = (window.innerHeight - 20) +"px";
         },
         methods: {
             handleClick(tab, event) {
                 this.tabindex = tab.index;
+                window.document.title = tab.label;
             }
         }
     }

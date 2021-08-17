@@ -29,7 +29,7 @@
                 </template>
             </el-table-column>
         </el-table>
-        <h6>------------------------------------------------------------------------------------------------------------</h6>
+        <h6><split-line></split-line></h6>
         <el-table :data="tableData3" :span-method="arraySpanMethod" border style="width: 100%">
             <el-table-column prop="id" label="ID" width="180"> </el-table-column>
             <el-table-column prop="name" label="姓名"> </el-table-column>
@@ -37,7 +37,7 @@
             <el-table-column prop="amount2" sortable label="数值 2"> </el-table-column>
             <el-table-column prop="amount3" sortable label="数值 3"> </el-table-column>
         </el-table>
-        <h6>------------------------------------------------------------------------------------------------------------</h6>
+        <h6><split-line></split-line></h6>
         <el-table :data="tableData4" style="width: 100%" :header-cell-style="setHeadStyle">
             <el-table-column prop="date" label="日期"></el-table-column>
             <el-table-column label="配送信息">

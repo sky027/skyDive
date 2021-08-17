@@ -30,7 +30,7 @@
             </el-table-column>
         </el-table>
 
-        <br><hr/><br>
+        <h6><split-line></split-line></h6>
 
         <el-button @click="getTables()">获取输入值</el-button>
         <el-table

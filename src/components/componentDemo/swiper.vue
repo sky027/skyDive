@@ -6,6 +6,7 @@
       </div>
       <div class="swiper-pagination"></div>
     </div>
+    <h6><split-line></split-line></h6>
   </div>
 </template>
 

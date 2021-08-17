@@ -5,10 +5,10 @@
 </template>
 
 <script>
-  import "./cdialog/js/jquery-2.1.4.js";
+  import "../cdialog/js/jquery-2.1.4.js";
   let time = new Date().getTime();
   export default {
-    //name: "combtn",
+    name: "com-btn",
     props:{
 
     },

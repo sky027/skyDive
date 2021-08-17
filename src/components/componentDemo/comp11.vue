@@ -18,7 +18,7 @@
                                  v-for="(child, k) of item.childHead" :key="k" :prop="child.prop" :label="child.label"></el-table-column>
             </el-table-column>
         </el-table>
-        <h6>- - - - -  - - - - - - - - - - -  - - - - - - - - - - - - - - - - -  - - - - - - - - - - -  - - - - - - - - - - - - - - - - -  - - - - - - - - - - -  - - - - - - - - - - - - - - - - -  - - - - - - - - - - -  - - - - - - - - - - - - </h6>
+    <h6><split-line></split-line></h6>
         <div class="grid-content2">
             <el-table :data="gridList" ref="multipleTable" border  @selection-change="handleseSelectionChange">
                 <el-table-column type="selection" width="50"></el-table-column>

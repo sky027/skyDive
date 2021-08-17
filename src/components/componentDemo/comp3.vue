@@ -1,5 +1,5 @@
 <template>
-  <el-scrollbar>
+  <el-scrollbar class="scroll-bar">
     <div class="comp3">
         <el-row :gutter="20" class="toprow">
             <el-col :span="6">
@@ -38,14 +38,11 @@
             </el-col>
             <el-col :span="6">
                 <span class="demonstration">日期选择</span>
-                <div class="block">
-                    <span class="demonstration">默认</span>
-                    <el-date-picker
-                    v-model="value1"
-                    type="datetime"
-                    placeholder="选择日期">
-                    </el-date-picker>
-                </div>
+              <el-date-picker
+                v-model="value1"
+                type="datetime"
+                placeholder="选择日期">
+              </el-date-picker>
             </el-col>
         </el-row>
         <!-- 表格部分 -->
@@ -56,24 +53,25 @@
                     <el-table :data="gridList.slice((currentPage - 1) * pagesize, currentPage * pagesize)"
                     class="gridcla" border @selection-change="handleseSelectionChange">
                         <el-table-column type="selection" width="50"> </el-table-column>
-                        <el-table-column type="index" :index="getIndex(index)" width="40"> </el-table-column>
-                        <el-table-column prop="id" label="编号" v-if="fsnumshow" width="145"> </el-table-column>
-                        <el-table-column prop="name" label="姓名" width="80">
+                        <el-table-column type="index" :index="getIndex(index)" width="50"> </el-table-column>
+                        <el-table-column prop="id" label="编号" v-if="fsnumshow" width="155"> </el-table-column>
+                      <el-table-column prop="newId" label="编号2" v-if="fsnumshow" width="350"> </el-table-column>
+                        <el-table-column prop="name" label="姓名" width="130">
                             <template slot-scope="scope">
                                 <a href="javascript:void(0);" @click="updateRow(scope.$index, scope.row, 1)">{{scope.row.name}}</a>
                             </template>
                         </el-table-column>
-                        <el-table-column prop="sex" label="性别" width="60">
+                        <el-table-column prop="sex" label="性别" width="120">
                             <template slot-scope="scope">
                                 <span>{{(scope.row.sex==1)?"男":"女"}}</span>
                             </template>
                         </el-table-column>
-                        <el-table-column prop="birth" label="出生日期" width="115" :show-overflow-tooltip="true"> </el-table-column>
-                        <el-table-column prop="age" label="年龄" width="65" :show-overflow-tooltip="true"> </el-table-column>
-                        <el-table-column prop="nations" label="民族" width="110" :show-overflow-tooltip="true"> </el-table-column>
-                        <el-table-column prop="previce" label="所在省份" width="120" :show-overflow-tooltip="true"> </el-table-column>
-                        <el-table-column prop="phone" label="联系电话" width="135"> </el-table-column>
-                        <el-table-column fixed="right" label="操作" width="140">
+                        <el-table-column prop="birth" label="出生日期" width="165" :show-overflow-tooltip="true"> </el-table-column>
+                        <el-table-column prop="age" label="年龄" width="115" :show-overflow-tooltip="true"> </el-table-column>
+                        <el-table-column prop="nations" label="民族" width="130" :show-overflow-tooltip="true"> </el-table-column>
+                        <el-table-column prop="previce" label="所在省份" width="140" :show-overflow-tooltip="true"> </el-table-column>
+                        <el-table-column prop="phone" label="联系电话" width="165"> </el-table-column>
+                        <el-table-column fixed="right" label="操作" width="150">
                             <template slot-scope="scope">
                                 <el-button type="text" size="small" @click="updateRow(scope.$index, scope.row, 1)">查看</el-button>
                                 <el-button type="text" size="small" @click="updateRow(scope.$index, scope.row, 2)">编辑</el-button>
@@ -88,7 +86,6 @@
                         :page-sizes="[10, 20, 30, 40]"
                         :page-size="pagesize"
                         :total="gridList.length">
-                        <span>第4/4页</span>
                     </el-pagination>
                 </div>
             </el-col>
@@ -483,7 +480,7 @@
                 console.log(value);
             },
             queryData(){
-                this.gridList = getArrData(100);
+                this.gridList = getArrData(200);
                 this.selectPriceList = getPrevice("arr");
                 this.selectNationsList = getNations("arr");
                 //console.log(this.selectNationsList);
@@ -652,11 +649,9 @@
 
 <style scoped lang="scss">
     .toprow{
-        margin-top: -10px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
     .grid-content2{
-        height: 490px;
         border: 1px solid #fff;
     }
     .gridcla{
@@ -676,4 +671,9 @@
     .showInfo .el-select{
         width: 100%;
     }
+  .scroll-bar{
+    /deep/ .is-horizontal {
+      display: none;
+    }
+  }
 </style>

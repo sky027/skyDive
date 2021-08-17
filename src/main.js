@@ -33,11 +33,6 @@ Vue.use(vuescroll, {
 import PerfectScrollbar from 'perfect-scrollbar';
 Vue.prototype.PS = PerfectScrollbar;
 
-
-import ComDailog from "./components/common/cdialog/js/cdialog.js";
-Vue.use(ComDailog);
-
-
 import axios from 'axios';
 Vue.prototype.$ajax = axios;
 
@@ -49,6 +44,9 @@ Vue.prototype.$echarts = echarts;
 
 // 全局样式
 import '../static/css/style.scss';
+
+// 组件
+import './components/common/index'
 
 Vue.config.productionTip = false
 
