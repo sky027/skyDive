@@ -11,3 +11,18 @@ Vue.use(ComBtn);
 // 分割线
 import SplitLine from './splitLine';
 Vue.use(SplitLine);
+
+// 弹窗2
+import PopWin from './popWin';
+Vue.use(PopWin);
+
+
+
+
+
+
+
+
+
+
+// --

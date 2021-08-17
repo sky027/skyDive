@@ -1,5 +1,4 @@
 import "./jquery-2.1.4.js";
-import vm from '../main.js';
 var dailogData = {};
 var dialog = {
   init: function(url, data){

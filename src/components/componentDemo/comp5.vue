@@ -1,14 +1,18 @@
 <template>
   <el-scrollbar>
     <div class="comp5">
-        <h2>第五个页签，测试弹窗</h2>
+        <h4>第五个页签，测试弹窗</h4>
         <button class="btns" @click="frodailog">OKOKO</button>
-        <test></test>
         <com-dailog v-if="showdailog"
          :dataList="dataList" @alertinfo1="alertinfo11" @alertinfo2="alertinfo22"
-         @closedlg="closeinfo"
-        >
+         @closedlg="closeinfo">
         </com-dailog>
+      <h6><split-line :height="1"></split-line> </h6>
+      <div>
+        <el-button @click="openLog()">OPEN</el-button>
+        <div>回传数据：{{msg}}</div>
+      </div>
+      <pop-win v-if="showPop" :popData="popData" @handleSure="handleSure" @handleCancel="handleCancel"></pop-win>
     </div>
   </el-scrollbar>
 </template>
@@ -23,19 +27,20 @@
             return {
               cnames: '',
               dataList: {},
-              showdailog: false
+              showdailog: false,
+              showPop: false,
+              popData: {
+                title: 'AAAAAAAA',
+                iconClass: 'title-place',  // title-logo
+                path: '/test.vue',
+              },
+              msg: '',
             };
         },
         mounted() {
           var _this = this;
           this.$nextTick(() => {
-
-
           });
-
-
-
-
         },
         methods: {
           add(){
@@ -72,6 +77,19 @@
           closeinfo(data){
             this.showdailog = data.flag;
 
+          },
+          openLog() {
+            this.showPop = true;
+          },
+          handleSure(data) {
+            console.log(data);
+            if (data) {
+              this.msg = data.info;
+            }
+            this.showPop = false;
+          },
+          handleCancel() {
+            this.showPop = false;
           }
         }
     }
