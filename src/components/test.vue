@@ -20,7 +20,7 @@
             width: 500,
             height: 200,
             title: 'BBBBBBB',
-            titleIcon: 'src/assets/logo.png',
+            iconClass: 'title-logo',
             component: '',
             path: '/test.vue',
           },

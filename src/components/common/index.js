@@ -16,6 +16,9 @@ Vue.use(SplitLine);
 import PopWin from './popWin';
 Vue.use(PopWin);
 
+// 提示
+import PopTip from './popTip';
+Vue.use(PopTip);
 
 
 

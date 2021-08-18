@@ -13,6 +13,15 @@
         <div>回传数据：{{msg}}</div>
       </div>
       <pop-win v-if="showPop" :popData="popData" @handleSure="handleSure" @handleCancel="handleCancel"></pop-win>
+      <h6><split-line :height="1"></split-line> </h6>
+      <div>
+        <h4>消息提示</h4>
+        <el-button @click="openTip(1)">SUCCESS</el-button>
+        <el-button @click="openTip(2)">ALARM</el-button>
+        <el-button @click="openTip(3)">INFO</el-button>
+        <el-button @click="openTip(4)">ERROR</el-button>
+        <pop-tip v-if="showTip" :popTipData="tipData" @tipSure="tipSure" @tipCancel="tipCancel"></pop-tip>
+      </div>
     </div>
   </el-scrollbar>
 </template>
@@ -35,6 +44,8 @@
                 path: '/test.vue',
               },
               msg: '',
+              showTip: false,
+              tipData: {}
             };
         },
         mounted() {
@@ -90,6 +101,41 @@
           },
           handleCancel() {
             this.showPop = false;
+          },
+          openTip(type) {
+            switch (type) {
+              case 1:
+                this.tipData = {
+                  type: 'success'
+                };
+                break;
+              case 4:
+                this.tipData = {
+                  type: 'error',
+                  msg: '操作失败'
+                };
+                break;
+              case 3:
+                this.tipData = {
+                  type: 'info',
+                  msg: '提示信息'
+                };
+                break;
+              case 2:
+                this.tipData = {
+                  type: 'alarm',
+                  msg: '警告信息⚠'
+                };
+                break;
+            }
+            this.showTip = true;
+          },
+          tipSure(){
+            console.log(this.tipData.type)
+            this.showTip = false;
+          },
+          tipCancel() {
+            this.showTip = false;
           }
         }
     }
