@@ -20,11 +20,13 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
-
+.chart-container-box{
+  display: flex;
+  flex-wrap: wrap;
+}
 .charts-box{
   width: 450px;
   height: 400px;
-  float: left;
   margin-left: 10px;
   margin-bottom: 15px;
   position: relative;
@@ -34,6 +36,9 @@
     color: #333;
     margin-bottom: 8px;
   }
+}
+.ec-box{
+  height: 85%;
 }
 
 .clearFixed:after {

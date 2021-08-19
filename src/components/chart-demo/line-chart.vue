@@ -1,5 +1,5 @@
 <template>
-  <div class="line clearFixed">
+  <div class="line clearFixed chart-container-box">
     <div class="charts-box">
       <div class="chart-title">示例</div>
       <ve-line :data="chartData"></ve-line>
@@ -36,6 +36,18 @@
       <div class="chart-title">设置横轴为连续的时间轴</div>
       <ve-line :data="chartData3" :settings="chartSettings6"></ve-line>
     </div>
+    <div class="charts-box">
+      <div class="chart-title">数据格式化</div>
+      <ve-line :data="chartData2" :settings="chartSettings7"></ve-line>
+    </div>
+    <div class="charts-box">
+      <div class="chart-title">设置指标、legend别名</div>
+      <ve-line :data="chartData4" :settings="chartSettings8"></ve-line>
+    </div>
+    <div class="charts-box">
+      <div class="chart-title">时间轴</div>
+      <ve-line :data="chartData3" :settings="chartSettings9"></ve-line>
+    </div>
   </div>
 </template>
 
@@ -52,6 +64,7 @@
           chartSettings6: {},
           chartSettings7: {},
           chartSettings8: {},
+          chartSettings9: {},
           extend: {},
           extend2: {},
           chartData: {
@@ -86,13 +99,25 @@
               { '日期': '2018-01-10', '访问用户': this.getRandomValue(500, 100), '下单用户': this.getRandomValue(300, 200), '下单率': this.getRandomValue(200, 50) },
               { '日期': '2018-01-20', '访问用户': this.getRandomValue(400, 100), '下单用户': this.getRandomValue(500, 100), '下单率': this.getRandomValue(500, 100) }
             ]
+          },
+          chartData4: {
+            columns: ['date', 'PV', 'Order', 'OrderRate'],
+            rows: [
+              { 'date': '1/1', 'PV': 1393, 'Order': 1093, 'OrderRate': 0.32 },
+              { 'date': '1/2', 'PV': 3530, 'Order': 3230, 'OrderRate': 0.26 },
+              { 'date': '1/3', 'PV': 2923, 'Order': 2623, 'OrderRate': 0.76 },
+              { 'date': '1/4', 'PV': 1723, 'Order': 1423, 'OrderRate': 0.49 },
+              { 'date': '1/5', 'PV': 3792, 'Order': 3492, 'OrderRate': 0.323 },
+              { 'date': '1/6', 'PV': 4593, 'Order': 4293, 'OrderRate': 0.78 }
+            ]
           }
         }
       },
-      mounted() {
+      created() {
         this.initSetting();
         this.initExtend();
-
+      },
+      mounted() {
       },
       methods: {
         getRandomValue(max, min) {
@@ -127,6 +152,23 @@
           this.chartSettings6 = {
             xAxisType: 'time'
           };
+          this.chartSettings7 = {
+            metricsType: {
+              '访问用户': '0.0a'
+            }
+          };
+          this.chartSettings8 = {
+            labelAlias: {
+              'PV': '访问用户',
+              'Order': '下单用户'
+            },
+            legendAlias: {
+              '访问用户': '访问用户 total: 10000'
+            }
+          };
+          this.chartSettings9 = {
+            xAxisType: 'time'
+          }
         },
         initExtend() {
           this.extend = {

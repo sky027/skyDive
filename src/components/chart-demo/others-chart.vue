@@ -1,5 +1,5 @@
 <template>
-  <div class="clearFixed">
+  <div class="clearFixed chart-container-box">
     <div class="charts-box">
       <div class="chart-title">瀑布图 设置数据类型</div>
       <ve-waterfall :data="chartData" :settings="chartSettings1"></ve-waterfall>

@@ -1,5 +1,5 @@
 <template>
-  <div class="clearFixed">
+  <div class="clearFixed chart-container-box">
     <div class="charts-box">
       <div class="chart-title">示例</div>
       <ve-pie :data="chartData"></ve-pie>
@@ -53,6 +53,15 @@
       </div>
       <ve-ring :data="chartData" :settings="chartSettings8"></ve-ring>
     </div>
+
+    <div class="charts-box">
+      <div class="chart-title">日历饼图（echarts）</div>
+      <div class="ec-box" id="chart_1"></div>
+    </div>
+    <div class="charts-box">
+      <div class="chart-title">联动数据共享（echarts）</div>
+      <div class="ec-box" id="chart_2"></div>
+    </div>
   </div>
 </template>
 
@@ -90,6 +99,8 @@
       mounted() {
         this.initSetting();
         this.initExtend();
+        this.initPies();
+        this.relateData();
       },
       methods: {
         initSetting() {
@@ -139,6 +150,193 @@
             offsetY: 200
           };
         },
+        initPies() {
+          let that = this;
+          let myChart = this.$echarts.init(document.getElementById('chart_1'));
+          let option = {}
+          var app = {};
+
+          var cellSize = [80, 80];
+          var pieRadius = 30;
+
+          function getVirtulData() {
+            var date = +that.$echarts.number.parseDate('2017-02-01');
+            var end = +that.$echarts.number.parseDate('2017-03-01');
+            var dayTime = 3600 * 24 * 1000;
+            var data = [];
+            for (var time = date; time < end; time += dayTime) {
+              data.push([
+                that.$echarts.format.formatTime('yyyy-MM-dd', time),
+                Math.floor(Math.random() * 10000)
+              ]);
+            }
+            return data;
+          }
+
+          function getPieSeries(scatterData, chart) {
+            return scatterData.map(function (item, index) {
+              var center = chart.convertToPixel('calendar', item);
+              return {
+                id: index + 'pie',
+                type: 'pie',
+                center: center,
+                label: {
+                  normal: {
+                    formatter: '{c}',
+                    position: 'inside'
+                  }
+                },
+                radius: pieRadius,
+                data: [
+                  {name: '工作', value: Math.round(Math.random() * 24)},
+                  {name: '娱乐', value: Math.round(Math.random() * 24)},
+                  {name: '睡觉', value: Math.round(Math.random() * 24)}
+                ]
+              };
+            });
+          }
+
+          function getPieSeriesUpdate(scatterData, chart) {
+            return scatterData.map(function (item, index) {
+              var center = chart.convertToPixel('calendar', item);
+              return {
+                id: index + 'pie',
+                center: center
+              };
+            });
+          }
+
+          var scatterData = getVirtulData();
+
+          option = {
+            tooltip: {},
+            legend: {
+              data: ['工作', '娱乐', '睡觉'],
+              bottom: 20
+            },
+            calendar: {
+              top: 'middle',
+              left: 'center',
+              orient: 'vertical',
+              cellSize: cellSize,
+              yearLabel: {
+                show: false,
+                fontSize: 30
+              },
+              dayLabel: {
+                margin: 20,
+                firstDay: 1,
+                nameMap: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+              },
+              monthLabel: {
+                show: false
+              },
+              range: ['2017-02']
+            },
+            series: [{
+              id: 'label',
+              type: 'scatter',
+              coordinateSystem: 'calendar',
+              symbolSize: 1,
+              label: {
+                show: true,
+                formatter: function (params) {
+                  return that.$echarts.format.formatTime('dd', params.value[0]);
+                },
+                offset: [-cellSize[0] / 2 + 10, -cellSize[1] / 2 + 10],
+                fontSize: 14
+              },
+              data: scatterData
+            }]
+          };
+          myChart.setOption(option);
+          var pieInitialized;
+          setTimeout(function () {
+            pieInitialized = true;
+            myChart.setOption({
+              series: getPieSeries(scatterData, myChart)
+            });
+          }, 10);
+
+          app.onresize = function () {
+            if (pieInitialized) {
+              myChart.setOption({
+                series: getPieSeriesUpdate(scatterData, myChart)
+              });
+            }
+          };
+        },
+        relateData() {
+          let that = this;
+          var myChart = this.$echarts.init(document.getElementById('chart_2'));
+          var option;
+
+          setTimeout(function () {
+
+            option = {
+              legend: {},
+              tooltip: {
+                trigger: 'axis',
+                showContent: false
+              },
+              dataset: {
+                source: [
+                  ['product', '2012', '2013', '2014', '2015', '2016', '2017'],
+                  ['Milk Tea', 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
+                  ['Matcha Latte', 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
+                  ['Cheese Cocoa', 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
+                  ['Walnut Brownie', 25.2, 37.1, 41.2, 18, 33.9, 49.1]
+                ]
+              },
+              xAxis: {type: 'category'},
+              yAxis: {gridIndex: 0},
+              grid: {top: '55%'},
+              series: [
+                {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
+                {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
+                {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
+                {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
+                {
+                  type: 'pie',
+                  id: 'pie',
+                  radius: '30%',
+                  center: ['50%', '25%'],
+                  emphasis: {focus: 'data'},
+                  label: {
+                    formatter: '{b}: {@2012} ({d}%)'
+                  },
+                  encode: {
+                    itemName: 'product',
+                    value: '2012',
+                    tooltip: '2012'
+                  }
+                }
+              ]
+            };
+
+            myChart.on('updateAxisPointer', function (event) {
+              var xAxisInfo = event.axesInfo[0];
+              if (xAxisInfo) {
+                var dimension = xAxisInfo.value + 1;
+                myChart.setOption({
+                  series: {
+                    id: 'pie',
+                    label: {
+                      formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                    },
+                    encode: {
+                      value: dimension,
+                      tooltip: dimension
+                    }
+                  }
+                });
+              }
+            });
+            myChart.setOption(option);
+          });
+          option && myChart.setOption(option);
+        },
+        // 0-
       }
     }
 </script>

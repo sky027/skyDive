@@ -1,5 +1,5 @@
 <template>
-  <div class="clearFixed">
+  <div class="clearFixed chart-container-box">
     <div class="charts-box">
       <div class="chart-title">热力图 自定义 visualMap</div>
       <ve-heatmap :data="chartData" :visual-map="chartVisualMap" :grid="chartGrid"></ve-heatmap>

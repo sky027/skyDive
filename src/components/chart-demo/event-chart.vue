@@ -1,5 +1,5 @@
 <template>
-  <div class="clearFixed">
+  <div class="clearFixed chart-container-box">
     <div class="charts-box">
       <div class="chart-title">图 标 类 型 切换</div>
       <button @click="changeType()">切换图表类型</button>
