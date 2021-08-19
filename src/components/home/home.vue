@@ -1,14 +1,19 @@
 <template>
     <div class="home" ref="home">
-        <el-tabs v-model="activeName" class="testtab" type="border-card" @tab-click="handleClick">
-            <el-tab-pane :label="item.label" :name="item.key" v-for="(item, index) of menuList" :key="index">
-                <component :is="item.compName" v-if="index == tabindex"></component>
-            </el-tab-pane>
-        </el-tabs>
+      <el-tabs v-if="this.$store.state.isLandscape" v-model="activeName" class="testtab" type="border-card" @tab-click="handleClick">
+        <el-tab-pane :label="item.label" :name="item.key" v-for="(item, index) of menuList" :key="index">
+          <component :is="item.compName" v-if="index == tabindex"></component>
+        </el-tab-pane>
+      </el-tabs>
+      <div style="height: 100%;width: 100%" v-if="!this.$store.state.isLandscape">
+        <el-button @click="getData">OKOKO</el-button>
+        <component is="homePortrait" ref="childTemp"></component>
+      </div>
     </div>
 </template>
 
 <script>
+  import homePortrait from '@/components/home/home-portrait';
     import comp1 from '@/components/componentDemo/comp1';
     import comp2 from '@/components/componentDemo/comp2';
     import comp3 from '@/components/componentDemo/comp3';
@@ -39,12 +44,14 @@
             "comp11": comp11,
             "comp12": comp12,
           swiper: swiper,
-          tableTemp: tableTemp
+          tableTemp: tableTemp,
+          homePortrait: homePortrait
         },
         data () {
             return {
                 activeName: 'eight',
                 showPage: false,
+                // screenType: this.$store.state.isLandscape,
                 menuList: [
                     {label: "网格", key: "first", html: "<comp1></comp1>", compName: "comp1"},
                     {label: "Echarts", key: "second", html: "<comp2></comp2>", compName: "comp2"},
@@ -67,16 +74,33 @@
       created() {
         window.document.title = '联动';
       },
-      mounted() {
-          this.$refs.home.style.width = (window.innerWidth - 16) +"px";
-          this.$refs.home.style.height = (window.innerHeight - 20) +"px";
-        },
-        methods: {
-            handleClick(tab, event) {
-                this.tabindex = tab.index;
-                window.document.title = tab.label;
-            }
+      computed: {
+        screenType() {
+          return this.$store.state.isLandscape;
         }
+      },
+      watch: {
+        screenType(a, b) {
+          // 通过监听computed中的screenType值的变化，简介实现store中的值的监听
+          setTimeout(() => {
+            this.$refs.home.style.height = (window.innerHeight - 20) +"px";
+          }, 500);
+        }
+      },
+      mounted() {
+          // this.$refs.home.style.width = (window.innerWidth - 16) +"px";
+          this.$refs.home.style.height = (window.innerHeight - 20) +"px";
+      },
+      methods: {
+        handleClick(tab, event) {
+            this.tabindex = tab.index;
+            window.document.title = tab.label;
+        },
+        getData() {
+          let e = this.$refs.childTemp;
+          console.log(e)
+        }
+      }
     }
 </script>
 

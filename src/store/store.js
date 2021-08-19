@@ -5,9 +5,14 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state:{
-    url: ""
+    url: "",
+    isLandscape: true,
+  },
+  mutations: {
+    setScreenType(state, flag) {
+      state.isLandscape = flag;
+    }
   }
-  
 });
 
 export default store;
