@@ -20,7 +20,9 @@ Vue.use(PopWin);
 import PopTip from './popTip';
 Vue.use(PopTip);
 
-
+// 列表
+import ComTable from './table';
+Vue.use(ComTable);
 
 
 
