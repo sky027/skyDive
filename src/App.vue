@@ -11,9 +11,13 @@ export default {
   /*
    * `字符串 ${ 参数 }`
   */
-  mounted() {
-    let that = this;
-    this.$nextTick(() => {
+  created() {
+    this.setScreen();
+  },
+  mounted() {},
+  methods: {
+    setScreen() {
+      let that = this;
       window.onload = function () {
         oriente();
         window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", oriente, false);
@@ -42,7 +46,7 @@ export default {
           return ' IOS终端';
         }
       }
-    });
+    }
   }
 }
 </script>
