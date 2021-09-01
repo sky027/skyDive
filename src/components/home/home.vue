@@ -2,7 +2,9 @@
     <div class="home" ref="home">
       <el-tabs v-if="this.$store.state.isLandscape" v-model="activeName" class="testtab" type="border-card" @tab-click="handleClick">
         <el-tab-pane :label="item.label" :name="item.key" v-for="(item, index) of menuList" :key="index">
-          <component :is="item.compName" v-if="index == tabindex"></component>
+          <transition name="fade">
+            <component :is="item.compName" v-if="index == tabindex"></component>
+          </transition>
         </el-tab-pane>
       </el-tabs>
       <div style="height: 100%;width: 100%" v-if="!this.$store.state.isLandscape">
@@ -28,6 +30,7 @@
     import comp12 from '@/components/chart-demo/chart-home';
     import swiper from '@/components/componentDemo/swiper';
     import tableTemp from '@/components/componentDemo/tableTemp';
+  import expandTemp from '@/components/componentDemo/expandTemp';
 
     export default {
         components: {
@@ -45,7 +48,8 @@
             "comp12": comp12,
           swiper: swiper,
           tableTemp: tableTemp,
-          homePortrait: homePortrait
+          homePortrait: homePortrait,
+          expandTemp: expandTemp
         },
         data () {
             return {
@@ -67,6 +71,7 @@
                     {label: "V-Chart", key: "ten12", html: "<comp12></comp12>", compName: "comp12"},
                     {label: "轮 播", key: "swiper", html: "<swiper></swiper>", compName: "swiper"},
                     {label: "列 表", key: "table", html: "<tableTemp></tableTemp>", compName: "tableTemp"},
+                  {label: "动 画", key: "expandTemp", html: "<expandTemp></expandTemp>", compName: "expandTemp"},
                 ],
                 tabindex: 1
             }
@@ -108,6 +113,13 @@
     .home{
       .testtab{
           height: 100%;
+      }
+      /* 淡入 淡出 */
+      .fade-enter-active, .fade-leave-active {
+        transition: opacity 1s;
+      }
+      .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
       }
     }
 </style>
